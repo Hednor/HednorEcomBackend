@@ -81,5 +81,5 @@ Videos/
 .vscode/
 .idea/
 /*
-# !/src/
+/src
 !.gitignore
