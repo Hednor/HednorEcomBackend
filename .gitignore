@@ -1,5 +1,5 @@
 # compiled output
-/dist
+# /dist
 /node_modules
 /build
 
@@ -54,3 +54,32 @@ pids
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+# Ignore system files and directories
+*.log
+*.tmp
+*.lock
+*.ini
+*.lnk
+.DS_Store
+node_modules/
+AppData/
+Contacts/
+Documents/
+Downloads/
+Favorites/
+Links/
+Music/
+Pictures/
+Videos/
+*.dat
+*.regtrans-ms
+*.blf
+*.mdf
+*.ldf
+
+# Ignore IDE and editor files
+.vscode/
+.idea/
+/*
+# !/src/
+!.gitignore
