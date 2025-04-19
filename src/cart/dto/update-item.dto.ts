@@ -22,10 +22,10 @@ export class UpdateItemDto {
   @IsNotEmpty()
   userId: string;
 
-  @Type(() => Number)
-  @IsNumber()
-  @Min(1)
-  order: number;
+  // @Type(() => Number)
+  // @IsNumber()
+  // @Min(1)
+  // order: number;
 
 }
 
