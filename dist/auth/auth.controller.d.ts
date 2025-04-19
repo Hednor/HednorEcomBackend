@@ -6,10 +6,16 @@ export declare class AuthController {
     constructor(authService: AuthService);
     signup(createAuthDto: CreateAuthDto): Promise<{
         message: string;
-        user: import("./Interface/user.interface").User;
+        user: import("./schemas/auth.schema").Auth;
     }>;
-    login(loginAuthDto: LoginAuthDto): Promise<{
+    login(loginDto: LoginAuthDto): Promise<{
         message: string;
-        user: import("./Interface/user.interface").User;
+        token: string;
+    }>;
+    forgotPassword(email: string): Promise<{
+        message: string;
+    }>;
+    resetPassword(token: string, newPassword: string): Promise<{
+        message: string;
     }>;
 }

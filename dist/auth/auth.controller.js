@@ -25,8 +25,14 @@ let AuthController = class AuthController {
     async signup(createAuthDto) {
         return this.authService.signup(createAuthDto);
     }
-    async login(loginAuthDto) {
-        return this.authService.login(loginAuthDto);
+    login(loginDto) {
+        return this.authService.login(loginDto);
+    }
+    forgotPassword(email) {
+        return this.authService.forgotPassword(email);
+    }
+    async resetPassword(token, newPassword) {
+        return this.authService.resetPassword(token, newPassword);
     }
 };
 exports.AuthController = AuthController;
@@ -42,8 +48,23 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [login_auth_dto_1.LoginAuthDto]),
-    __metadata("design:returntype", Promise)
+    __metadata("design:returntype", void 0)
 ], AuthController.prototype, "login", null);
+__decorate([
+    (0, common_1.Post)('forgot-password'),
+    __param(0, (0, common_1.Body)('email')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AuthController.prototype, "forgotPassword", null);
+__decorate([
+    (0, common_1.Post)('reset-password'),
+    __param(0, (0, common_1.Body)('token')),
+    __param(1, (0, common_1.Body)('newPassword')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "resetPassword", null);
 exports.AuthController = AuthController = __decorate([
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService])

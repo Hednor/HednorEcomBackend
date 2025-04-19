@@ -1,14 +1,25 @@
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { LoginAuthDto } from './dto/login-auth.dto';
-import { User } from './Interface/user.interface';
+import { Model } from 'mongoose';
+import { Auth, AuthDocument } from './schemas/auth.schema';
+import { JwtService } from '@nestjs/jwt';
 export declare class AuthService {
-    private users;
-    signup(createAuthDto: CreateAuthDto): Promise<{
+    private authModel;
+    private jwtService;
+    constructor(authModel: Model<AuthDocument>, jwtService: JwtService);
+    signup(dto: CreateAuthDto): Promise<{
         message: string;
-        user: User;
+        user: Auth;
     }>;
-    login(loginDto: LoginAuthDto): Promise<{
+    login(dto: LoginAuthDto): Promise<{
         message: string;
-        user: User;
+        token: string;
     }>;
+    forgotPassword(email: string): Promise<{
+        message: string;
+    }>;
+    resetPassword(token: string, newPassword: string): Promise<{
+        message: string;
+    }>;
+    private sendResetEmail;
 }
