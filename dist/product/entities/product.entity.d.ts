@@ -1,0 +1,30 @@
+export declare class Product {
+    _id: string;
+    productId: string;
+    name: string;
+    description: string;
+    price: number;
+    salePrice?: number;
+    sku: string;
+    stock: number;
+    brand: string;
+    manufacturer?: string;
+    material?: string;
+    warranty?: string;
+    expirationDate?: Date;
+    barcode?: string;
+    rating?: number;
+    ratingCount?: number;
+    shippingWeight?: number;
+    availabilityStatus: string;
+    tags: string[];
+    dimensions?: string;
+    featured: boolean;
+    productType?: string;
+    isDigital: boolean;
+    shippingRegion?: string;
+    returnPolicy?: string;
+    bundle?: string;
+    category: string;
+    sellerId: string;
+}
