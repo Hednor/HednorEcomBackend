@@ -6,23 +6,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.CartModule = void 0;
 const common_1 = require("@nestjs/common");
+const cart_service_1 = require("./cart.service");
+const cart_controller_1 = require("./cart.controller");
 const mongoose_1 = require("@nestjs/mongoose");
-const user_module_1 = require("./user/user.module");
-const auth_module_1 = require("./auth/auth.module");
-const cart_module_1 = require("./cart/cart.module");
-let AppModule = class AppModule {
+const cart_schema_1 = require("./schemas/cart.schema");
+let CartModule = class CartModule {
 };
-exports.AppModule = AppModule;
-exports.AppModule = AppModule = __decorate([
+exports.CartModule = CartModule;
+exports.CartModule = CartModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            mongoose_1.MongooseModule.forRoot('mongodb://127.0.0.1:27017/hadnor'),
-            user_module_1.UserModule,
-            auth_module_1.AuthModule,
-            cart_module_1.CartModule
-        ],
+        imports: [mongoose_1.MongooseModule.forFeature([{ name: cart_schema_1.Cart.name, schema: cart_schema_1.CartSchema }])],
+        controllers: [cart_controller_1.CartController],
+        providers: [cart_service_1.CartService],
     })
-], AppModule);
-//# sourceMappingURL=app.module.js.map
+], CartModule);
+//# sourceMappingURL=cart.module.js.map
