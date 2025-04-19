@@ -11,19 +11,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 let AppController = class AppController {
     getHello() {
-        return 'MongoDB connected successfully with NestJS 🚀';
+        return {
+            status: 'OK',
+            message: 'E-Commerce API is running',
+            timestamp: new Date().toISOString(),
+        };
+    }
+    getHealth() {
+        return { status: 'healthy' };
     }
 };
 exports.AppController = AppController;
 __decorate([
     (0, common_1.Get)(),
+    (0, swagger_1.ApiOperation)({ summary: 'Check API status' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'API is running' }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", String)
+    __metadata("design:returntype", Object)
 ], AppController.prototype, "getHello", null);
+__decorate([
+    (0, common_1.Get)('health'),
+    (0, swagger_1.ApiOperation)({ summary: 'Check API health' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'API is healthy' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Object)
+], AppController.prototype, "getHealth", null);
 exports.AppController = AppController = __decorate([
+    (0, swagger_1.ApiTags)('Root'),
     (0, common_1.Controller)()
 ], AppController);
 //# sourceMappingURL=app.controller.js.map

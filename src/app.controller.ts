@@ -1,20 +1,26 @@
+// src/app.controller.ts
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 
-// @Controller()
-// export class AppController {
-//   constructor(private readonly appService: AppService) {}
-
-//   @Get()
-//   getHello(): string {
-//     return this.appService.getHello();
-//   }
-// }
+@ApiTags('Root')
 @Controller()
 export class AppController {
   @Get()
-  getHello(): string {
-    return 'MongoDB connected successfully with NestJS 🚀';
+  @ApiOperation({ summary: 'Check API status' })
+  @ApiResponse({ status: 200, description: 'API is running' })
+  getHello(): { status: string; message: string; timestamp: string } {
+    return {
+      status: 'OK',
+      message: 'E-Commerce API is running',
+      timestamp: new Date().toISOString(),
+    };
+  }
+
+  @Get('health')
+  @ApiOperation({ summary: 'Check API health' })
+  @ApiResponse({ status: 200, description: 'API is healthy' })
+  getHealth(): { status: string } {
+    return { status: 'healthy' };
   }
 }
