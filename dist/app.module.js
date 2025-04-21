@@ -11,15 +11,26 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const user_module_1 = require("./user/user.module");
 const auth_module_1 = require("./auth/auth.module");
+const graphql_1 = require("@nestjs/graphql");
+const apollo_1 = require("@nestjs/apollo");
+const path_1 = require("path");
+const order_module_1 = require("./order/order.module");
+const inventory_module_1 = require("./inventory/inventory.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            graphql_1.GraphQLModule.forRoot({
+                driver: apollo_1.ApolloDriver,
+                autoSchemaFile: (0, path_1.join)(process.cwd(), 'src/schema.gql'),
+            }),
             mongoose_1.MongooseModule.forRoot('mongodb://127.0.0.1:27017/hadnor'),
             user_module_1.UserModule,
             auth_module_1.AuthModule,
+            order_module_1.OrderModule,
+            inventory_module_1.InventoryModule
         ],
     })
 ], AppModule);

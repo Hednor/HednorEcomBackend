@@ -1,0 +1,55 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type OrderType {
+  _id: String!
+  orderId: String!
+  totalAmount: Float!
+  coupanIds: [String!]!
+  status: String!
+  cartId: String!
+  paymentId: String!
+  userId: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  address: String!
+  tracking: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  testOrderQuery: String!
+}
+
+type Mutation {
+  createOrder(input: CreateOrderInput!): OrderType!
+  updateOrderDelivery(input: UpdateOrderDeliveryInput!): OrderType!
+  deductStock(items: [DeductStockInput!]!): String!
+}
+
+input CreateOrderInput {
+  orderId: String!
+  totalAmount: Float!
+  coupanId: [String!]
+  cartId: String!
+  paymentId: String!
+  userId: String!
+  address: String!
+  cartItems: [DeductStockInput!]!
+}
+
+input DeductStockInput {
+  productId: String!
+  quantity: Float!
+}
+
+input UpdateOrderDeliveryInput {
+  orderId: String!
+  status: String
+  tracking: String
+}
