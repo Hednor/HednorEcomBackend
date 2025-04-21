@@ -2,6 +2,24 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type ProductCategory {
+  _id: ID!
+  name: String!
+  image: String!
+  description: String
+}
+
+type ProductSubCategory {
+  _id: ID!
+  name: String!
+  productCategoryId: String!
+}
+
+type Variant {
+  size: String
+  color: String
+}
+
 type Product {
   _id: ID!
   productId: String!
@@ -22,6 +40,7 @@ type Product {
   shippingWeight: Float
   availabilityStatus: String!
   images: [String!]!
+  variants: [Variant!]!
   tags: [String!]!
   dimensions: String
   featured: Boolean!
@@ -30,27 +49,15 @@ type Product {
   shippingRegion: String
   returnPolicy: String
   bundle: String
-  category: String!
   sellerId: String!
+  category: ProductCategory
+  subCategory: ProductSubCategory
 }
 
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
-
-type ProductCategory {
-  _id: ID!
-  name: String!
-  image: String!
-  description: String
-}
-
-type ProductSubCategory {
-  _id: ID!
-  name: String!
-  productCategoryId: String!
-}
 
 type Query {
   findAllProducts: [Product!]!
@@ -92,6 +99,7 @@ input CreateProductInput {
   shippingWeight: Float
   availabilityStatus: String!
   images: [String!]!
+  variants: [VariantInput!]
   tags: [String!]!
   dimensions: String
   featured: Boolean!
@@ -100,8 +108,14 @@ input CreateProductInput {
   shippingRegion: String
   returnPolicy: String
   bundle: String
-  category: String!
   sellerId: String!
+  categoryId: String
+  subCategoryId: String
+}
+
+input VariantInput {
+  size: String
+  color: String
 }
 
 input UpdateProductInput {
@@ -123,6 +137,7 @@ input UpdateProductInput {
   shippingWeight: Float
   availabilityStatus: String
   images: [String!]
+  variants: [VariantInput!]
   tags: [String!]
   dimensions: String
   featured: Boolean
@@ -131,8 +146,9 @@ input UpdateProductInput {
   shippingRegion: String
   returnPolicy: String
   bundle: String
-  category: String
   sellerId: String
+  categoryId: String
+  subCategoryId: String
   id: ID!
 }
 

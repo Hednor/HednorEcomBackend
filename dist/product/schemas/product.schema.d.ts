@@ -1,4 +1,4 @@
-import { Document } from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 export type ProductDocument = Product & Document;
 export declare class Product {
     productId: string;
@@ -21,6 +21,10 @@ export declare class Product {
     createdAt: Date;
     updatedAt: Date;
     images: string[];
+    variants: {
+        size?: string;
+        color?: string;
+    }[];
     tags: string[];
     dimensions?: string;
     featured: boolean;
@@ -29,15 +33,16 @@ export declare class Product {
     shippingRegion?: string;
     returnPolicy?: string;
     bundle?: string;
-    category: string;
     sellerId: string;
+    categoryId: string;
+    subCategoryId: string;
 }
-export declare const ProductSchema: import("mongoose").Schema<Product, import("mongoose").Model<Product, any, any, any, Document<unknown, any, Product> & Product & {
-    _id: import("mongoose").Types.ObjectId;
+export declare const ProductSchema: mongoose.Schema<Product, mongoose.Model<Product, any, any, any, mongoose.Document<unknown, any, Product> & Product & {
+    _id: mongoose.Types.ObjectId;
 } & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Product, Document<unknown, {}, import("mongoose").FlatRecord<Product>> & import("mongoose").FlatRecord<Product> & {
-    _id: import("mongoose").Types.ObjectId;
+}, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Product, mongoose.Document<unknown, {}, mongoose.FlatRecord<Product>> & mongoose.FlatRecord<Product> & {
+    _id: mongoose.Types.ObjectId;
 } & {
     __v: number;
 }>;

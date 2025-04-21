@@ -1,3 +1,9 @@
+import { ProductCategory } from 'src/product-category/entities/product-category.entity';
+import { ProductSubCategory } from 'src/product-sub-category/entities/product-sub-category.entity';
+export declare class Variant {
+    size?: string;
+    color?: string;
+}
 export declare class Product {
     _id: string;
     productId: string;
@@ -18,6 +24,7 @@ export declare class Product {
     shippingWeight?: number;
     availabilityStatus: string;
     images: string[];
+    variants: Variant[];
     tags: string[];
     dimensions?: string;
     featured: boolean;
@@ -26,6 +33,7 @@ export declare class Product {
     shippingRegion?: string;
     returnPolicy?: string;
     bundle?: string;
-    category: string;
     sellerId: string;
+    category: ProductCategory;
+    subCategory: ProductSubCategory;
 }

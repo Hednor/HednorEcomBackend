@@ -12,6 +12,8 @@ const mongoose_1 = require("@nestjs/mongoose");
 const product_schema_1 = require("./schemas/product.schema");
 const product_service_1 = require("./product.service");
 const product_resolver_1 = require("./product.resolver");
+const product_category_schema_1 = require("../product-category/schemas/product-category.schema");
+const product_sub_category_schema_1 = require("../product-sub-category/schemas/product-sub-category.schema");
 let ProductModule = class ProductModule {
 };
 exports.ProductModule = ProductModule;
@@ -20,6 +22,8 @@ exports.ProductModule = ProductModule = __decorate([
         imports: [
             mongoose_1.MongooseModule.forFeature([
                 { name: product_schema_1.Product.name, schema: product_schema_1.ProductSchema },
+                { name: product_category_schema_1.ProductCategory.name, schema: product_category_schema_1.ProductCategorySchema },
+                { name: product_sub_category_schema_1.ProductSubCategory.name, schema: product_sub_category_schema_1.ProductSubCategorySchema },
             ]),
         ],
         providers: [product_resolver_1.ProductResolver, product_service_1.ProductService],

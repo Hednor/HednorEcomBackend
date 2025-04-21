@@ -18,25 +18,39 @@ const product_service_1 = require("./product.service");
 const product_entity_1 = require("./entities/product.entity");
 const create_product_input_1 = require("./dto/create-product.input");
 const update_product_input_1 = require("./dto/update-product.input");
+const mongoose_1 = require("@nestjs/mongoose");
+const product_category_schema_1 = require("../product-category/schemas/product-category.schema");
+const product_sub_category_schema_1 = require("../product-sub-category/schemas/product-sub-category.schema");
+const mongoose_2 = require("mongoose");
 let ProductResolver = class ProductResolver {
-    service;
-    constructor(service) {
-        this.service = service;
+    productService;
+    categoryModel;
+    subCategoryModel;
+    constructor(productService, categoryModel, subCategoryModel) {
+        this.productService = productService;
+        this.categoryModel = categoryModel;
+        this.subCategoryModel = subCategoryModel;
     }
     createProduct(input) {
-        return this.service.create(input);
+        return this.productService.create(input);
     }
     findAllProducts() {
-        return this.service.findAll();
+        return this.productService.findAll();
     }
     findProduct(id) {
-        return this.service.findOne(id);
+        return this.productService.findOne(id);
     }
     updateProduct(input) {
-        return this.service.update(input.id, input);
+        return this.productService.update(input.id, input);
     }
     removeProduct(id) {
-        return this.service.remove(id);
+        return this.productService.remove(id);
+    }
+    async category(product) {
+        return this.categoryModel.findById(product.categoryId);
+    }
+    async subCategory(product) {
+        return this.subCategoryModel.findById(product.subCategoryId);
     }
 };
 exports.ProductResolver = ProductResolver;
@@ -74,8 +88,26 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ProductResolver.prototype, "removeProduct", null);
+__decorate([
+    (0, graphql_1.ResolveField)(() => product_category_schema_1.ProductCategory),
+    __param(0, (0, graphql_1.Parent)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ProductResolver.prototype, "category", null);
+__decorate([
+    (0, graphql_1.ResolveField)(() => product_sub_category_schema_1.ProductSubCategory),
+    __param(0, (0, graphql_1.Parent)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ProductResolver.prototype, "subCategory", null);
 exports.ProductResolver = ProductResolver = __decorate([
     (0, graphql_1.Resolver)(() => product_entity_1.Product),
-    __metadata("design:paramtypes", [product_service_1.ProductService])
+    __param(1, (0, mongoose_1.InjectModel)(product_category_schema_1.ProductCategory.name)),
+    __param(2, (0, mongoose_1.InjectModel)(product_sub_category_schema_1.ProductSubCategory.name)),
+    __metadata("design:paramtypes", [product_service_1.ProductService,
+        mongoose_2.Model,
+        mongoose_2.Model])
 ], ProductResolver);
 //# sourceMappingURL=product.resolver.js.map

@@ -1,3 +1,7 @@
+export declare class VariantInput {
+    size?: string;
+    color?: string;
+}
 export declare class CreateProductInput {
     productId: string;
     name: string;
@@ -17,6 +21,7 @@ export declare class CreateProductInput {
     shippingWeight?: number;
     availabilityStatus: string;
     images: string[];
+    variants?: VariantInput[];
     tags: string[];
     dimensions?: string;
     featured: boolean;
@@ -25,6 +30,7 @@ export declare class CreateProductInput {
     shippingRegion?: string;
     returnPolicy?: string;
     bundle?: string;
-    category: string;
     sellerId: string;
+    categoryId: string;
+    subCategoryId: string;
 }

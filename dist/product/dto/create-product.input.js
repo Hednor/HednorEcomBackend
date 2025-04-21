@@ -9,8 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateProductInput = void 0;
+exports.CreateProductInput = exports.VariantInput = void 0;
 const graphql_1 = require("@nestjs/graphql");
+let VariantInput = class VariantInput {
+    size;
+    color;
+};
+exports.VariantInput = VariantInput;
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], VariantInput.prototype, "size", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], VariantInput.prototype, "color", void 0);
+exports.VariantInput = VariantInput = __decorate([
+    (0, graphql_1.InputType)()
+], VariantInput);
 let CreateProductInput = class CreateProductInput {
     productId;
     name;
@@ -30,6 +46,7 @@ let CreateProductInput = class CreateProductInput {
     shippingWeight;
     availabilityStatus;
     images;
+    variants;
     tags;
     dimensions;
     featured;
@@ -38,8 +55,9 @@ let CreateProductInput = class CreateProductInput {
     shippingRegion;
     returnPolicy;
     bundle;
-    category;
     sellerId;
+    categoryId;
+    subCategoryId;
 };
 exports.CreateProductInput = CreateProductInput;
 __decorate([
@@ -115,6 +133,10 @@ __decorate([
     __metadata("design:type", Array)
 ], CreateProductInput.prototype, "images", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => [VariantInput], { nullable: true }),
+    __metadata("design:type", Array)
+], CreateProductInput.prototype, "variants", void 0);
+__decorate([
     (0, graphql_1.Field)(() => [String]),
     __metadata("design:type", Array)
 ], CreateProductInput.prototype, "tags", void 0);
@@ -149,11 +171,15 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(),
     __metadata("design:type", String)
-], CreateProductInput.prototype, "category", void 0);
-__decorate([
-    (0, graphql_1.Field)(),
-    __metadata("design:type", String)
 ], CreateProductInput.prototype, "sellerId", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], CreateProductInput.prototype, "categoryId", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], CreateProductInput.prototype, "subCategoryId", void 0);
 exports.CreateProductInput = CreateProductInput = __decorate([
     (0, graphql_1.InputType)()
 ], CreateProductInput);

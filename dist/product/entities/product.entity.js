@@ -9,8 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Product = void 0;
+exports.Product = exports.Variant = void 0;
 const graphql_1 = require("@nestjs/graphql");
+const product_category_entity_1 = require("../../product-category/entities/product-category.entity");
+const product_sub_category_entity_1 = require("../../product-sub-category/entities/product-sub-category.entity");
+let Variant = class Variant {
+    size;
+    color;
+};
+exports.Variant = Variant;
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], Variant.prototype, "size", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], Variant.prototype, "color", void 0);
+exports.Variant = Variant = __decorate([
+    (0, graphql_1.ObjectType)()
+], Variant);
 let Product = class Product {
     _id;
     productId;
@@ -31,6 +49,7 @@ let Product = class Product {
     shippingWeight;
     availabilityStatus;
     images;
+    variants;
     tags;
     dimensions;
     featured;
@@ -39,8 +58,9 @@ let Product = class Product {
     shippingRegion;
     returnPolicy;
     bundle;
-    category;
     sellerId;
+    category;
+    subCategory;
 };
 exports.Product = Product;
 __decorate([
@@ -120,6 +140,10 @@ __decorate([
     __metadata("design:type", Array)
 ], Product.prototype, "images", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => [Variant]),
+    __metadata("design:type", Array)
+], Product.prototype, "variants", void 0);
+__decorate([
     (0, graphql_1.Field)(() => [String]),
     __metadata("design:type", Array)
 ], Product.prototype, "tags", void 0);
@@ -154,11 +178,15 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(),
     __metadata("design:type", String)
+], Product.prototype, "sellerId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => product_category_entity_1.ProductCategory, { nullable: true }),
+    __metadata("design:type", product_category_entity_1.ProductCategory)
 ], Product.prototype, "category", void 0);
 __decorate([
-    (0, graphql_1.Field)(),
-    __metadata("design:type", String)
-], Product.prototype, "sellerId", void 0);
+    (0, graphql_1.Field)(() => product_sub_category_entity_1.ProductSubCategory, { nullable: true }),
+    __metadata("design:type", product_sub_category_entity_1.ProductSubCategory)
+], Product.prototype, "subCategory", void 0);
 exports.Product = Product = __decorate([
     (0, graphql_1.ObjectType)()
 ], Product);

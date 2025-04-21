@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductSchema = exports.Product = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
+const mongoose_2 = require("mongoose");
 let Product = class Product {
     productId;
     name;
@@ -32,6 +33,7 @@ let Product = class Product {
     createdAt;
     updatedAt;
     images;
+    variants;
     tags;
     dimensions;
     featured;
@@ -40,8 +42,9 @@ let Product = class Product {
     shippingRegion;
     returnPolicy;
     bundle;
-    category;
     sellerId;
+    categoryId;
+    subCategoryId;
 };
 exports.Product = Product;
 __decorate([
@@ -125,6 +128,10 @@ __decorate([
     __metadata("design:type", Array)
 ], Product.prototype, "images", void 0);
 __decorate([
+    (0, mongoose_1.Prop)({ type: [{ size: String, color: String }] }),
+    __metadata("design:type", Array)
+], Product.prototype, "variants", void 0);
+__decorate([
     (0, mongoose_1.Prop)([String]),
     __metadata("design:type", Array)
 ], Product.prototype, "tags", void 0);
@@ -159,11 +166,15 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Product.prototype, "category", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
 ], Product.prototype, "sellerId", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: 'ProductCategory' }),
+    __metadata("design:type", String)
+], Product.prototype, "categoryId", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: 'ProductSubCategory' }),
+    __metadata("design:type", String)
+], Product.prototype, "subCategoryId", void 0);
 exports.Product = Product = __decorate([
     (0, mongoose_1.Schema)()
 ], Product);

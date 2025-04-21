@@ -1,6 +1,6 @@
 // src/product/schemas/product.schema.ts
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 
 export type ProductDocument = Product & Document;
 
@@ -31,7 +31,15 @@ export class Product {
   @Prop({ default: Date.now }) updatedAt: Date;
   
   @Prop([String]) images: string[];
+
+  @Prop({ type: [{ size: String, color: String}] })
+  variants: {
+    size?: string;
+    color?: string;
+  }[];
+
   @Prop([String]) tags: string[];
+
   @Prop() dimensions?: string;
   @Prop() featured: boolean;
   @Prop() productType?: string;
@@ -39,9 +47,15 @@ export class Product {
   @Prop() shippingRegion?: string;
   @Prop() returnPolicy?: string;
   @Prop() bundle?: string;
-  @Prop() category: string;
+  // @Prop() category: string;
 
   @Prop() sellerId: string;
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'ProductCategory' })
+  categoryId: string;
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'ProductSubCategory' })
+  subCategoryId: string;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

@@ -11,6 +11,7 @@ import { ProductCategoryResolver } from './product-category.resolver';
       { name: ProductCategory.name, schema: ProductCategorySchema },
     ]),
   ],
+ 
   providers: [ProductCategoryResolver, ProductCategoryService],
 })
 export class ProductCategoryModule {}
