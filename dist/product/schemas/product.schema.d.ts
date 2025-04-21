@@ -20,6 +20,7 @@ export declare class Product {
     availabilityStatus: string;
     createdAt: Date;
     updatedAt: Date;
+    images: string[];
     tags: string[];
     dimensions?: string;
     featured: boolean;

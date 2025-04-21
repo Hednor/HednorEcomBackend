@@ -29,7 +29,8 @@ export class Product {
 
   @Prop({ default: Date.now }) createdAt: Date;
   @Prop({ default: Date.now }) updatedAt: Date;
-
+  
+  @Prop([String]) images: string[];
   @Prop([String]) tags: string[];
   @Prop() dimensions?: string;
   @Prop() featured: boolean;

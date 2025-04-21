@@ -21,6 +21,7 @@ type Product {
   ratingCount: Float
   shippingWeight: Float
   availabilityStatus: String!
+  images: [String!]!
   tags: [String!]!
   dimensions: String
   featured: Boolean!
@@ -90,6 +91,7 @@ input CreateProductInput {
   ratingCount: Float
   shippingWeight: Float
   availabilityStatus: String!
+  images: [String!]!
   tags: [String!]!
   dimensions: String
   featured: Boolean!
@@ -120,6 +122,7 @@ input UpdateProductInput {
   ratingCount: Float
   shippingWeight: Float
   availabilityStatus: String
+  images: [String!]
   tags: [String!]
   dimensions: String
   featured: Boolean

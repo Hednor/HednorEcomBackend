@@ -29,6 +29,7 @@ let CreateProductInput = class CreateProductInput {
     ratingCount;
     shippingWeight;
     availabilityStatus;
+    images;
     tags;
     dimensions;
     featured;
@@ -109,6 +110,10 @@ __decorate([
     (0, graphql_1.Field)(),
     __metadata("design:type", String)
 ], CreateProductInput.prototype, "availabilityStatus", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => [String]),
+    __metadata("design:type", Array)
+], CreateProductInput.prototype, "images", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [String]),
     __metadata("design:type", Array)

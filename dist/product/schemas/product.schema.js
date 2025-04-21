@@ -31,6 +31,7 @@ let Product = class Product {
     availabilityStatus;
     createdAt;
     updatedAt;
+    images;
     tags;
     dimensions;
     featured;
@@ -119,6 +120,10 @@ __decorate([
     (0, mongoose_1.Prop)({ default: Date.now }),
     __metadata("design:type", Date)
 ], Product.prototype, "updatedAt", void 0);
+__decorate([
+    (0, mongoose_1.Prop)([String]),
+    __metadata("design:type", Array)
+], Product.prototype, "images", void 0);
 __decorate([
     (0, mongoose_1.Prop)([String]),
     __metadata("design:type", Array)

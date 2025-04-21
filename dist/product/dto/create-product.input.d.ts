@@ -16,6 +16,7 @@ export declare class CreateProductInput {
     ratingCount?: number;
     shippingWeight?: number;
     availabilityStatus: string;
+    images: string[];
     tags: string[];
     dimensions?: string;
     featured: boolean;

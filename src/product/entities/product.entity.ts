@@ -23,6 +23,7 @@ export class Product {
   @Field({ nullable: true }) ratingCount?: number;
   @Field(() => Float, { nullable: true }) shippingWeight?: number;
   @Field() availabilityStatus: string;
+  @Field(() => [String]) images: string[];
   @Field(() => [String]) tags: string[];
   @Field({ nullable: true }) dimensions?: string;
   @Field() featured: boolean;
