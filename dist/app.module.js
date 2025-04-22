@@ -17,6 +17,7 @@ const product_module_1 = require("./product/product.module");
 const product_category_module_1 = require("./product-category/product-category.module");
 const product_sub_category_module_1 = require("./product-sub-category/product-sub-category.module");
 const path_1 = require("path");
+const image_module_1 = require("./image/image.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -33,6 +34,7 @@ exports.AppModule = AppModule = __decorate([
             product_sub_category_module_1.ProductSubCategoryModule,
             user_module_1.UserModule,
             auth_module_1.AuthModule,
+            image_module_1.ImageModule,
         ],
     })
 ], AppModule);

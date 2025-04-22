@@ -59,6 +59,15 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Image {
+  _id: ID!
+  url: String!
+  color: String!
+  images: [String!]!
+  price: Float!
+  productId: String!
+}
+
 type Query {
   findAllProducts: [Product!]!
   findProduct(id: String!): Product!
@@ -66,6 +75,8 @@ type Query {
   findProductCategory(id: String!): ProductCategory!
   findAllProductSubCategories: [ProductSubCategory!]!
   findProductSubCategory(id: String!): ProductSubCategory!
+  findAllImages: [Image!]!
+  findImage(id: String!): Image!
 }
 
 type Mutation {
@@ -78,6 +89,9 @@ type Mutation {
   createProductSubCategory(input: CreateProductSubCategoryInput!): ProductSubCategory!
   updateProductSubCategory(input: UpdateProductSubCategoryInput!): ProductSubCategory!
   removeProductSubCategory(id: String!): ProductSubCategory!
+  createImage(input: CreateImageInput!): Image!
+  updateImage(input: UpdateImageInput!): Image!
+  removeImage(id: String!): Image!
 }
 
 input CreateProductInput {
@@ -174,4 +188,21 @@ input UpdateProductSubCategoryInput {
   name: String
   productCategoryId: String
   id: ID!
+}
+
+input CreateImageInput {
+  url: String!
+  color: String!
+  images: [String!]!
+  price: Float!
+  productId: String!
+}
+
+input UpdateImageInput {
+  url: String
+  color: String
+  images: [String!]
+  price: Float
+  productId: String
+  id: String!
 }
