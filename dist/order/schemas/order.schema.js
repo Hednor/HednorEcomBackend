@@ -41,7 +41,11 @@ __decorate([
     __metadata("design:type", Array)
 ], Order.prototype, "coupanIds", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ enum: ['Pending', 'Success', 'Failed', 'Rejected', 'Processing'], default: 'Pending' }),
+    (0, mongoose_1.Prop)({
+        type: String,
+        enum: ['pending', 'confirmed', 'shipped', 'delivered', 'cancelled', 'Processing', 'Rejected', 'Failed', 'Success'],
+        default: 'pending',
+    }),
     __metadata("design:type", String)
 ], Order.prototype, "status", void 0);
 __decorate([

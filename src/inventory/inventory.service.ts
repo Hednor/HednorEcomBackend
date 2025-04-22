@@ -28,4 +28,15 @@ export class InventoryService {
       await product.save();
     }
   }
+
+
+  async restoreStock(items: any[]) {
+    for (const item of items) {
+      const { productId, quantity } = item;
+      await this.productModel.findByIdAndUpdate(productId, {
+        $inc: { stock: quantity },
+      });
+    }
+  }
+  
 }

@@ -7,5 +7,6 @@ export declare class OrderResolver {
     constructor(orderService: OrderService);
     createOrder(input: CreateOrderInput): Promise<Order>;
     updateOrderDelivery(input: UpdateOrderDeliveryInput): Promise<Order>;
+    cancelOrder(orderId: string, userId: string): Promise<Order>;
     testOrderQuery(): string;
 }

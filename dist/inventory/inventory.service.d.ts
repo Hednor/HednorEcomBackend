@@ -5,4 +5,5 @@ export declare class InventoryService {
     private productModel;
     constructor(productModel: Model<product>);
     deductStock(items: DeductStockInput[]): Promise<void>;
+    restoreStock(items: any[]): Promise<void>;
 }

@@ -41,7 +41,7 @@ let OrderService = class OrderService {
             orderId: input.orderId,
             address: input.address,
             tracking: '',
-            status: 'Pending',
+            status: 'pending',
             createdAt: new Date(),
         });
         return await newOrder.save();
@@ -57,6 +57,22 @@ let OrderService = class OrderService {
         if (!order) {
             throw new common_1.NotFoundException('Order not found');
         }
+        return order;
+    }
+    async cancelOrder(orderId, userId) {
+        const order = await this.orderModel.findOne({ orderId });
+        if (!order) {
+            throw new common_1.NotFoundException('Order not found');
+        }
+        if (order.userId.toString() !== userId.toString()) {
+            throw new common_1.ForbiddenException('You are not allowed to cancel this order');
+        }
+        if (!['pending', 'confirmed'].includes(order.status)) {
+            throw new common_1.BadRequestException('Order cannot be cancelled at this stage');
+        }
+        order.status = 'cancelled';
+        await order.save();
+        await this.inventoryService.restoreStock(order.items);
         return order;
     }
 };

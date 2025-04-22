@@ -2,8 +2,15 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type OrderItemType {
+  productId: String!
+  quantity: Float!
+  price: Float!
+  name: String!
+}
+
 type OrderType {
-  _id: String!
+  _id: ID!
   orderId: String!
   totalAmount: Float!
   coupanIds: [String!]!
@@ -15,6 +22,8 @@ type OrderType {
   updatedAt: DateTime!
   address: String!
   tracking: String!
+  orderStatus: String!
+  items: [OrderItemType!]!
 }
 
 """
@@ -22,18 +31,32 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Refund {
+  _id: ID!
+  orderId: String!
+  userId: String!
+  reason: String!
+  status: String!
+  requestedAt: DateTime!
+}
+
 type Query {
   testOrderQuery: String!
+  refundsByUser(userId: String!): [Refund!]!
 }
 
 type Mutation {
   createOrder(input: CreateOrderInput!): OrderType!
   updateOrderDelivery(input: UpdateOrderDeliveryInput!): OrderType!
+  cancelOrder(orderId: String!, userId: String!): OrderType!
   deductStock(items: [DeductStockInput!]!): String!
+  requestRefund(input: CreateRefundInput!): Refund!
+  updateRefundStatus(input: UpdateRefundStatusInput!): Refund!
 }
 
 input CreateOrderInput {
   orderId: String!
+  status: String!
   totalAmount: Float!
   coupanId: [String!]
   cartId: String!
@@ -52,4 +75,15 @@ input UpdateOrderDeliveryInput {
   orderId: String!
   status: String
   tracking: String
+}
+
+input CreateRefundInput {
+  orderId: String!
+  userId: String!
+  reason: String!
+}
+
+input UpdateRefundStatusInput {
+  orderId: String!
+  status: String!
 }

@@ -1,5 +1,5 @@
 // src/order/order.service.ts
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Order, OrderDocument } from './schemas/order.schema';
 import { Model } from 'mongoose';
@@ -9,15 +9,19 @@ import { UpdateOrderDeliveryInput } from './dto/update-order-delivery.input';
 import { InventoryService } from 'src/inventory/inventory.service';
 import { DeductStockInput } from 'src/inventory/dto/deduct-stock.input';
 
+
 @Injectable()
 export class OrderService {
   constructor(
     @InjectModel(Order.name) private orderModel: Model<Order>,
+    
     private readonly inventoryService: InventoryService,
+  
+    
   ) {}
 
   async createOrder(input: CreateOrderInput): Promise<Order> {
-    const { userId, cartItems, totalAmount, coupanId, paymentId, cartId } = input;
+    const { userId, cartItems, totalAmount, coupanId, paymentId, cartId} = input;
 
     // ✅ Step 1: Prepare stock deduction input
     const stockItems: DeductStockInput[] = cartItems.map(item => ({
@@ -39,12 +43,16 @@ export class OrderService {
       orderId: input.orderId,
       address: input.address,
   tracking: '', // default
-      status: 'Pending', // default
+      status: 'pending', // default
       createdAt: new Date(),
+      
     });
 
     return await newOrder.save();
   }
+
+  
+
   async updateOrderDelivery(input: UpdateOrderDeliveryInput): Promise<Order> {
     const { orderId, status, tracking } = input;
   
@@ -64,6 +72,36 @@ export class OrderService {
   
     return order;
   }
+
+
+  async cancelOrder(orderId: string, userId: string): Promise<Order> {
+    // const order = await this.orderModel.findById(orderId);
+    const order = await this.orderModel.findOne({ orderId }); // 👈 yeh line update ki
+  
+    if (!order) {
+      throw new NotFoundException('Order not found');
+    }
+  
+    // Check if user owns this order (or is admin)
+    if (order.userId.toString() !== userId.toString()) {
+      throw new ForbiddenException('You are not allowed to cancel this order');
+    }
+  
+    // Allow cancellation only if status is pending or confirmed
+    if (!['pending', 'confirmed'].includes(order.status)) {
+      throw new BadRequestException('Order cannot be cancelled at this stage');
+    }
+  
+    // Update status
+    order.status = 'cancelled';
+    await order.save();
+  
+    // Restore inventory
+    await this.inventoryService.restoreStock(order.items);
+  
+    return order;
+  }
+  
   
 
   

@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderType = void 0;
 const graphql_1 = require("@nestjs/graphql");
+const order_item_type_1 = require("./order-item.type");
 let OrderType = class OrderType {
     _id;
     orderId;
@@ -24,10 +25,12 @@ let OrderType = class OrderType {
     updatedAt;
     address;
     tracking;
+    orderStatus;
+    items;
 };
 exports.OrderType = OrderType;
 __decorate([
-    (0, graphql_1.Field)(),
+    (0, graphql_1.Field)(() => graphql_1.ID),
     __metadata("design:type", String)
 ], OrderType.prototype, "_id", void 0);
 __decorate([
@@ -74,6 +77,14 @@ __decorate([
     (0, graphql_1.Field)(),
     __metadata("design:type", String)
 ], OrderType.prototype, "tracking", void 0);
+__decorate([
+    (0, graphql_1.Field)(),
+    __metadata("design:type", String)
+], OrderType.prototype, "orderStatus", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => [order_item_type_1.OrderItemType]),
+    __metadata("design:type", Array)
+], OrderType.prototype, "items", void 0);
 exports.OrderType = OrderType = __decorate([
     (0, graphql_1.ObjectType)()
 ], OrderType);

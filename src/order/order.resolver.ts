@@ -1,5 +1,5 @@
 // src/order/order.resolver.ts
-import { Resolver, Mutation, Args, Query } from '@nestjs/graphql';
+import { Resolver, Mutation, Args, Query, Context } from '@nestjs/graphql';
 import { OrderService } from './order.service';
 import { OrderType } from './dto/order.type';
 
@@ -22,6 +22,25 @@ createOrder(@Args('input') input: CreateOrderInput): Promise<Order> {
 async updateOrderDelivery(@Args('input') input: UpdateOrderDeliveryInput,): Promise<Order> {
   return this.orderService.updateOrderDelivery(input);
 }
+
+
+
+// @Mutation(() => OrderType)
+// cancelOrder(@Args('orderId') orderId: string, @Context() context) {
+//   const userId = context.req.user._id;
+//   return this.orderService.cancelOrder(orderId, userId);
+// }
+
+@Mutation(() => OrderType)
+cancelOrder(
+  @Args('orderId') orderId: string,
+  @Args('userId') userId: string, // 👈 ab userId input se lenge
+) {
+  return this.orderService.cancelOrder(orderId, userId);
+}
+
+
+
 
 @Query(() => String)
   testOrderQuery(): string {

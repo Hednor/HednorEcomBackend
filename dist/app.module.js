@@ -16,6 +16,7 @@ const apollo_1 = require("@nestjs/apollo");
 const path_1 = require("path");
 const order_module_1 = require("./order/order.module");
 const inventory_module_1 = require("./inventory/inventory.module");
+const refund_module_1 = require("./refund/refund.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -30,7 +31,8 @@ exports.AppModule = AppModule = __decorate([
             user_module_1.UserModule,
             auth_module_1.AuthModule,
             order_module_1.OrderModule,
-            inventory_module_1.InventoryModule
+            inventory_module_1.InventoryModule,
+            refund_module_1.RefundModule,
         ],
     })
 ], AppModule);

@@ -42,8 +42,20 @@ export class Order {
   @Prop({ type: [String], default: [] })
   coupanIds: string[];
 
-  @Prop({ enum: ['Pending', 'Success', 'Failed', 'Rejected', 'Processing'], default: 'Pending' })
-  status: string;
+  // @Prop({ enum: ['Pending', 'Success', 'Failed', 'Rejected', 'Processing'], default: 'Pending' })
+  // status: string;
+
+  
+
+@Prop({
+  type: String,
+  enum: ['pending', 'confirmed', 'shipped', 'delivered', 'cancelled' , 'Processing' , 'Rejected', 'Failed', 'Success'],
+  default: 'pending',
+})
+status: string;
+
+
+
 
   @Prop({ required: true })
   cartId: string;

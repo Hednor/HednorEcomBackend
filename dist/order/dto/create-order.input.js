@@ -14,6 +14,7 @@ const graphql_1 = require("@nestjs/graphql");
 const deduct_stock_input_1 = require("../../inventory/dto/deduct-stock.input");
 let CreateOrderInput = class CreateOrderInput {
     orderId;
+    status;
     totalAmount;
     coupanId;
     cartId;
@@ -27,6 +28,10 @@ __decorate([
     (0, graphql_1.Field)(),
     __metadata("design:type", String)
 ], CreateOrderInput.prototype, "orderId", void 0);
+__decorate([
+    (0, graphql_1.Field)(),
+    __metadata("design:type", String)
+], CreateOrderInput.prototype, "status", void 0);
 __decorate([
     (0, graphql_1.Field)(),
     __metadata("design:type", Number)

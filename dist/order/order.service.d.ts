@@ -9,4 +9,5 @@ export declare class OrderService {
     constructor(orderModel: Model<Order>, inventoryService: InventoryService);
     createOrder(input: CreateOrderInput): Promise<Order>;
     updateOrderDelivery(input: UpdateOrderDeliveryInput): Promise<Order>;
+    cancelOrder(orderId: string, userId: string): Promise<Order>;
 }

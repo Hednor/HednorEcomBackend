@@ -5,8 +5,8 @@ import { DeductStockInput } from "src/inventory/dto/deduct-stock.input";
 export class CreateOrderInput {
   @Field()
   orderId: string;
-
-
+  @Field()
+  status: string;
 
   @Field()
   totalAmount: number;

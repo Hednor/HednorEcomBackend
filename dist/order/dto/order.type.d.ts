@@ -1,3 +1,4 @@
+import { OrderItemType } from './order-item.type';
 export declare class OrderType {
     _id: string;
     orderId: string;
@@ -11,4 +12,6 @@ export declare class OrderType {
     updatedAt: Date;
     address: string;
     tracking: string;
+    orderStatus: string;
+    items: OrderItemType[];
 }

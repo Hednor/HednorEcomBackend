@@ -29,6 +29,9 @@ let OrderResolver = class OrderResolver {
     async updateOrderDelivery(input) {
         return this.orderService.updateOrderDelivery(input);
     }
+    cancelOrder(orderId, userId) {
+        return this.orderService.cancelOrder(orderId, userId);
+    }
     testOrderQuery() {
         return 'Order resolver is working!';
     }
@@ -48,6 +51,14 @@ __decorate([
     __metadata("design:paramtypes", [update_order_delivery_input_1.UpdateOrderDeliveryInput]),
     __metadata("design:returntype", Promise)
 ], OrderResolver.prototype, "updateOrderDelivery", null);
+__decorate([
+    (0, graphql_1.Mutation)(() => order_type_1.OrderType),
+    __param(0, (0, graphql_1.Args)('orderId')),
+    __param(1, (0, graphql_1.Args)('userId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], OrderResolver.prototype, "cancelOrder", null);
 __decorate([
     (0, graphql_1.Query)(() => String),
     __metadata("design:type", Function),

@@ -13,6 +13,7 @@ import { join } from 'path';
 
 import { OrderModule } from './order/order.module';
 import { InventoryModule } from './inventory/inventory.module';
+import { RefundModule } from './refund/refund.module';
 
 @Module({
   imports: [
@@ -24,7 +25,9 @@ import { InventoryModule } from './inventory/inventory.module';
     UserModule,
     AuthModule,
     OrderModule,
-    InventoryModule
+    InventoryModule,
+    RefundModule,
+    
     
   ],
 })

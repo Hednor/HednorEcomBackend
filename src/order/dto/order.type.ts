@@ -1,5 +1,6 @@
 // // src/order/dto/order.type.ts
 import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { OrderItemType } from './order-item.type';
 
 // @ObjectType()
 // export class OrderType {
@@ -26,9 +27,11 @@ import { ObjectType, Field, ID } from '@nestjs/graphql';
 // }
 
 
+
+
 @ObjectType()
 export class OrderType {
-  @Field()
+  @Field(() => ID)
   _id: string;
 
   @Field()
@@ -63,4 +66,11 @@ export class OrderType {
 
   @Field()
   tracking: string;
+
+  @Field()
+  orderStatus: string;
+
+  @Field(() => [OrderItemType])
+  items: OrderItemType[];
 }
+

@@ -35,6 +35,14 @@ let InventoryService = class InventoryService {
             await product.save();
         }
     }
+    async restoreStock(items) {
+        for (const item of items) {
+            const { productId, quantity } = item;
+            await this.productModel.findByIdAndUpdate(productId, {
+                $inc: { stock: quantity },
+            });
+        }
+    }
 };
 exports.InventoryService = InventoryService;
 exports.InventoryService = InventoryService = __decorate([
