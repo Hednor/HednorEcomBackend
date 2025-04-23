@@ -253,3 +253,62 @@ mutation {
   }
 }
 
+Sample GraphQL Playground Queries for Image
+
+Create Image
+mutation {
+  createImage(input: {
+    url: "https://image.com/main.jpg"
+    color: "Black"
+    images: ["https://image.com/img1.jpg", "https://image.com/img2.jpg"]
+    price: 999
+    productId: "PRODUCT_ID"
+  }) {
+    _id
+    color
+  }
+}
+
+Find All Images
+query {
+  findAllImages {
+    _id
+    url
+    color
+    price
+    images
+    productId
+  }
+}
+
+Find Image by ID
+query {
+  findImage(id: "YOUR_IMAGE_ID") {
+    _id
+    url
+    color
+  }
+}
+
+Update Image
+mutation {
+  updateImage(input: {
+    id: "YOUR_IMAGE_ID"
+    color: "White"
+  }) {
+    _id
+    color
+  }
+}
+
+Delete Image
+mutation {
+  removeImage(id: "YOUR_IMAGE_ID") {
+    _id
+    color
+  }
+}
+
+
+
+
