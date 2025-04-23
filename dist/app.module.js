@@ -17,6 +17,8 @@ const path_1 = require("path");
 const order_module_1 = require("./order/order.module");
 const inventory_module_1 = require("./inventory/inventory.module");
 const refund_module_1 = require("./refund/refund.module");
+const email_module_1 = require("./email/email.module");
+const config_1 = require("@nestjs/config");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -28,11 +30,13 @@ exports.AppModule = AppModule = __decorate([
                 autoSchemaFile: (0, path_1.join)(process.cwd(), 'src/schema.gql'),
             }),
             mongoose_1.MongooseModule.forRoot('mongodb://127.0.0.1:27017/hadnor'),
+            config_1.ConfigModule.forRoot({ isGlobal: true }),
             user_module_1.UserModule,
             auth_module_1.AuthModule,
             order_module_1.OrderModule,
             inventory_module_1.InventoryModule,
             refund_module_1.RefundModule,
+            email_module_1.EmailModule,
         ],
     })
 ], AppModule);

@@ -18,12 +18,15 @@ const mongoose_1 = require("@nestjs/mongoose");
 const order_schema_1 = require("./schemas/order.schema");
 const mongoose_2 = require("mongoose");
 const inventory_service_1 = require("../inventory/inventory.service");
+const email_service_1 = require("../email/email.service");
 let OrderService = class OrderService {
     orderModel;
     inventoryService;
-    constructor(orderModel, inventoryService) {
+    emailService;
+    constructor(orderModel, inventoryService, emailService) {
         this.orderModel = orderModel;
         this.inventoryService = inventoryService;
+        this.emailService = emailService;
     }
     async createOrder(input) {
         const { userId, cartItems, totalAmount, coupanId, paymentId, cartId } = input;
@@ -81,6 +84,7 @@ exports.OrderService = OrderService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)(order_schema_1.Order.name)),
     __metadata("design:paramtypes", [mongoose_2.Model,
-        inventory_service_1.InventoryService])
+        inventory_service_1.InventoryService,
+        email_service_1.EmailService])
 ], OrderService);
 //# sourceMappingURL=order.service.js.map

@@ -13,6 +13,7 @@ const order_service_1 = require("./order.service");
 const mongoose_1 = require("@nestjs/mongoose");
 const order_schema_1 = require("./schemas/order.schema");
 const inventory_module_1 = require("../inventory/inventory.module");
+const email_module_1 = require("../email/email.module");
 let OrderModule = class OrderModule {
 };
 exports.OrderModule = OrderModule;
@@ -21,6 +22,7 @@ exports.OrderModule = OrderModule = __decorate([
         imports: [
             mongoose_1.MongooseModule.forFeature([{ name: order_schema_1.Order.name, schema: order_schema_1.OrderSchema }]),
             inventory_module_1.InventoryModule,
+            email_module_1.EmailModule,
         ],
         providers: [order_resolver_1.OrderResolver, order_service_1.OrderService],
     })
