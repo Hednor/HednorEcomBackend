@@ -1,98 +1,314 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 🛒 Hednor eCommerce Backend (NestJS + GraphQL + MongoDB)
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This is a powerful and flexible backend API built with [NestJS](https://nestjs.com/), [GraphQL](https://graphql.org/), and [MongoDB](https://www.mongodb.com/) for an eCommerce application.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## 🚀 Features
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- 🧩 Modular structure using NestJS
+- 📦 MongoDB (with Mongoose) for data storage
+- 🧠 GraphQL API with CRUD support
+- 📁 Product, Category, SubCategory management
+- 📷 Image uploads (optional: Cloudinary/S3)
+- 📊 Dynamic filters (brand, price, etc.)
+- 🔐 Auth ready (JWT/Guards - optional setup)
 
-## Project setup
+---
 
-```bash
-$ npm install
-```
+## 📦 Tech Stack
 
-## Compile and run the project
+- **Backend**: NestJS
+- **Database**: MongoDB with Mongoose
+- **API**: GraphQL (Code-first)
+- **Others**: TypeScript, npm
+
+---
+
+## 🛠️ Installation
+
+1. Clone the repo:
 
 ```bash
-# development
-$ npm run start
+git clone https://github.com/yourusername/hednor-ecom-backend.git
+cd hednor-ecom-backend
 
-# watch mode
-$ npm run start:dev
+## Satart Your Project
+npm run start:dev
 
-# production mode
-$ npm run start:prod
-```
+## use this url in your Browser 
+http://localhost:3000/graphql
 
-## Run tests
+##fatch this APIs
 
-```bash
-# unit tests
-$ npm run test
+## Query For ProductCategory
 
-# e2e tests
-$ npm run test:e2e
+Create ProductCategory               
+mutation {
+  createProductCategory(input: {
+    name: "Electronics",
+    image: "https://example.com/electronics.jpg",
+    description: "All electronic devices"
+  }) {
+    _id
+    name
+  }
+}
 
-# test coverage
-$ npm run test:cov
-```
+ Get All ProductCategories
+query {
+  findAllProductCategories {
+    _id
+    name
+    image
+    description
+  }
+}
 
-## Deployment
+Get One ProductCategory by ID
+query {
+  findProductCategory(id: "YOUR_CATEGORY_ID") {
+    _id
+    name
+    image
+    description
+  }
+}
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+Update ProductCategory
+mutation {
+  updateProductCategory(input: {
+    id: "YOUR_CATEGORY_ID",
+    name: "Updated Electronics",
+    image: "https://example.com/updated.jpg",
+    description: "Updated description"
+  }) {
+    _id
+    name
+  }
+}
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+Delete ProductCategory
+mutation {
+  removeProductCategory(id: "YOUR_CATEGORY_ID") {
+    _id
+    name
+  }
+}
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
 
-## Resources
+## Query For ProductSubCategory
 
-Check out a few resources that may come in handy when working with NestJS:
+Create ProductSubCategory
+mutation {
+  createProductSubCategory(input: {
+    name: "Smartphones",
+    productCategoryId: "YOUR_CATEGORY_ID"
+  }) {
+    _id
+    name
+  }
+}
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Get All SubCategories
+query {
+  findAllProductSubCategories {
+    _id
+    name
+    productCategoryId
+  }
+}
 
-## Support
+Get One SubCategory
+query {
+  findProductSubCategory(id: "YOUR_SUBCATEGORY_ID") {
+    _id
+    name
+    productCategoryId
+  }
+}
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Update SubCategory
+mutation {
+  updateProductSubCategory(input: {
+    id: "YOUR_SUBCATEGORY_ID",
+    name: "Updated Subcategory Name"
+  }) {
+    _id
+    name
+  }
+}
+ Delete SubCategory
+mutation {
+  removeProductSubCategory(id: "YOUR_SUBCATEGORY_ID") {
+    _id
+    name
+  }
+}
 
-## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Query For Product
 
-## License
+Create Product with relation
+mutation {
+  createProduct(input: {
+    productId: "PRD123456789",
+    name: "iPhone 15",
+    description: "Latest Apple iPhone",
+    price: 999.99,
+    sku: "SKU1234",
+    stock: 50,
+    brand: "Apple",
+    availabilityStatus: "In Stock",
+    featured: true,
+    isDigital: false,
+    images: ["https://example.com/electronics.jpg", "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRwJ85RjINaYAavL4JhNQrpthvKTkZ2Dy0ooRniOD98tyu3zMev"],
+    variants: [{ size: "M", color: "Black"}],
+    tags: ["electronics", "new"],
+    # category: "Smartphones",
+    sellerId: "SELLER123",
+    categoryId: "68063e0f29c398c719875bd4",
+    subCategoryId: "68063e1229c398c719875bd6"
+  }) {
+    _id
+    name
+    price
+  }
+}
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Get All Products
+query {
+  findAllProducts {
+    _id
+    productId
+    name
+    price
+    brand
+    stock
+  }
+}
+Get All Products with relation
+query {
+  findAllProducts {
+    _id
+    name
+    brand
+    category {
+      name
+      image
+    }
+    subCategory {
+      name
+    }
+  }
+}
+
+
+Get One Product
+query {
+  findProduct(id: "YOUR_PRODUCT_ID") {
+    _id
+    name
+    description
+    price
+  }
+}
+
+Get One Product with relation
+query {
+  findProduct(id: "PRODUCT_ID_HERE") {
+    _id
+    name
+    price
+    category {
+      name
+    }
+    subCategory {
+      name
+    }
+  }
+}
+
+
+
+Update Product
+mutation {
+  updateProduct(input: {
+    id: "YOUR_PRODUCT_ID",
+    name: "Updated Product Name",
+    price: 799.99
+  }) {
+    _id
+    name
+    price
+  }
+}
+
+Delete Product
+mutation {
+  removeProduct(id: "YOUR_PRODUCT_ID") {
+    _id
+    name
+  }
+}
+
+Sample GraphQL Playground Queries for Image
+
+Create Image
+mutation {
+  createImage(input: {
+    url: "https://image.com/main.jpg"
+    color: "Black"
+    images: ["https://image.com/img1.jpg", "https://image.com/img2.jpg"]
+    price: 999
+    productId: "PRODUCT_ID"
+  }) {
+    _id
+    color
+  }
+}
+
+Find All Images
+query {
+  findAllImages {
+    _id
+    url
+    color
+    price
+    images
+    productId
+  }
+}
+
+Find Image by ID
+query {
+  findImage(id: "YOUR_IMAGE_ID") {
+    _id
+    url
+    color
+  }
+}
+
+Update Image
+mutation {
+  updateImage(input: {
+    id: "YOUR_IMAGE_ID"
+    color: "White"
+  }) {
+    _id
+    color
+  }
+}
+
+Delete Image
+mutation {
+  removeImage(id: "YOUR_IMAGE_ID") {
+    _id
+    color
+  }
+}
+
+
+
+

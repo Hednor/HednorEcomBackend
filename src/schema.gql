@@ -1,0 +1,208 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type ProductCategory {
+  _id: ID!
+  name: String!
+  image: String!
+  description: String
+}
+
+type ProductSubCategory {
+  _id: ID!
+  name: String!
+  productCategoryId: String!
+}
+
+type Variant {
+  size: String
+  color: String
+}
+
+type Product {
+  _id: ID!
+  productId: String!
+  name: String!
+  description: String!
+  price: Float!
+  salePrice: Float
+  sku: String!
+  stock: Float!
+  brand: String!
+  manufacturer: String
+  material: String
+  warranty: String
+  expirationDate: DateTime
+  barcode: String
+  rating: Float
+  ratingCount: Float
+  shippingWeight: Float
+  availabilityStatus: String!
+  images: [String!]!
+  variants: [Variant!]!
+  tags: [String!]!
+  dimensions: String
+  featured: Boolean!
+  productType: String
+  isDigital: Boolean!
+  shippingRegion: String
+  returnPolicy: String
+  bundle: String
+  sellerId: String!
+  category: ProductCategory
+  subCategory: ProductSubCategory
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Image {
+  _id: ID!
+  url: String!
+  color: String!
+  images: [String!]!
+  price: Float!
+  productId: String!
+}
+
+type Query {
+  findAllProducts: [Product!]!
+  findProduct(id: String!): Product!
+  findAllProductCategories: [ProductCategory!]!
+  findProductCategory(id: String!): ProductCategory!
+  findAllProductSubCategories: [ProductSubCategory!]!
+  findProductSubCategory(id: String!): ProductSubCategory!
+  findAllImages: [Image!]!
+  findImage(id: String!): Image!
+}
+
+type Mutation {
+  createProduct(input: CreateProductInput!): Product!
+  updateProduct(input: UpdateProductInput!): Product!
+  removeProduct(id: String!): Product!
+  createProductCategory(input: CreateProductCategoryInput!): ProductCategory!
+  updateProductCategory(input: UpdateProductCategoryInput!): ProductCategory!
+  removeProductCategory(id: String!): ProductCategory!
+  createProductSubCategory(input: CreateProductSubCategoryInput!): ProductSubCategory!
+  updateProductSubCategory(input: UpdateProductSubCategoryInput!): ProductSubCategory!
+  removeProductSubCategory(id: String!): ProductSubCategory!
+  createImage(input: CreateImageInput!): Image!
+  updateImage(input: UpdateImageInput!): Image!
+  removeImage(id: String!): Image!
+}
+
+input CreateProductInput {
+  productId: String!
+  name: String!
+  description: String!
+  price: Float!
+  salePrice: Float
+  sku: String!
+  stock: Float!
+  brand: String!
+  manufacturer: String
+  material: String
+  warranty: String
+  expirationDate: DateTime
+  barcode: String
+  rating: Float
+  ratingCount: Float
+  shippingWeight: Float
+  availabilityStatus: String!
+  images: [String!]!
+  variants: [VariantInput!]
+  tags: [String!]!
+  dimensions: String
+  featured: Boolean!
+  productType: String
+  isDigital: Boolean!
+  shippingRegion: String
+  returnPolicy: String
+  bundle: String
+  sellerId: String!
+  categoryId: String
+  subCategoryId: String
+}
+
+input VariantInput {
+  size: String
+  color: String
+}
+
+input UpdateProductInput {
+  productId: String
+  name: String
+  description: String
+  price: Float
+  salePrice: Float
+  sku: String
+  stock: Float
+  brand: String
+  manufacturer: String
+  material: String
+  warranty: String
+  expirationDate: DateTime
+  barcode: String
+  rating: Float
+  ratingCount: Float
+  shippingWeight: Float
+  availabilityStatus: String
+  images: [String!]
+  variants: [VariantInput!]
+  tags: [String!]
+  dimensions: String
+  featured: Boolean
+  productType: String
+  isDigital: Boolean
+  shippingRegion: String
+  returnPolicy: String
+  bundle: String
+  sellerId: String
+  categoryId: String
+  subCategoryId: String
+  id: ID!
+}
+
+input CreateProductCategoryInput {
+  name: String!
+  image: String!
+  description: String
+}
+
+input UpdateProductCategoryInput {
+  name: String
+  image: String
+  description: String
+  id: ID!
+}
+
+input CreateProductSubCategoryInput {
+  name: String!
+  productCategoryId: String!
+}
+
+input UpdateProductSubCategoryInput {
+  name: String
+  productCategoryId: String
+  id: ID!
+}
+
+input CreateImageInput {
+  url: String!
+  color: String!
+  images: [String!]!
+  price: Float!
+  productId: String!
+}
+
+input UpdateImageInput {
+  url: String
+  color: String
+  images: [String!]
+  price: Float
+  productId: String
+  id: String!
+}
