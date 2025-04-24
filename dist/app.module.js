@@ -16,6 +16,7 @@ const apollo_1 = require("@nestjs/apollo");
 const product_module_1 = require("./product/product.module");
 const product_category_module_1 = require("./product-category/product-category.module");
 const product_sub_category_module_1 = require("./product-sub-category/product-sub-category.module");
+const discount_module_1 = require("./discount/discount.module");
 const path_1 = require("path");
 const image_module_1 = require("./image/image.module");
 let AppModule = class AppModule {
@@ -35,6 +36,7 @@ exports.AppModule = AppModule = __decorate([
             user_module_1.UserModule,
             auth_module_1.AuthModule,
             image_module_1.ImageModule,
+            discount_module_1.DiscountModule,
         ],
     })
 ], AppModule);

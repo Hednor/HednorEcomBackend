@@ -8,6 +8,7 @@ import { ApolloDriver } from '@nestjs/apollo';
 import { ProductModule } from './product/product.module';
 import { ProductCategoryModule } from './product-category/product-category.module';
 import { ProductSubCategoryModule } from './product-sub-category/product-sub-category.module';
+import { DiscountModule } from './discount/discount.module';
 import { join } from 'path';
 import { ImageModule } from './image/image.module';
 
@@ -24,6 +25,7 @@ import { ImageModule } from './image/image.module';
     UserModule,
     AuthModule,
     ImageModule,
+    DiscountModule,
   ],
 })
 export class AppModule {}
