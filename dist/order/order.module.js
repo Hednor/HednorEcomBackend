@@ -25,6 +25,7 @@ exports.OrderModule = OrderModule = __decorate([
             email_module_1.EmailModule,
         ],
         providers: [order_resolver_1.OrderResolver, order_service_1.OrderService],
+        exports: [mongoose_1.MongooseModule],
     })
 ], OrderModule);
 //# sourceMappingURL=order.module.js.map

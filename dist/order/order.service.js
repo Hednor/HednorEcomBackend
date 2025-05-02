@@ -47,7 +47,19 @@ let OrderService = class OrderService {
             status: 'pending',
             createdAt: new Date(),
         });
-        return await newOrder.save();
+        const savedOrder = await newOrder.save();
+        const customerEmail = 'imranahmad9847@gmail.com';
+        await this.emailService.sendEmail({
+            to: customerEmail,
+            subject: 'Order Confirmation',
+            text: `Your order (${input.orderId}) has been placed successfully.`,
+            html: `
+        <h2>Thanks for your order!</h2>
+        <p><strong>Order ID:</strong> ${input.orderId}</p>
+        <p><strong>Total:</strong> ₹${totalAmount}</p>
+      `,
+        });
+        return savedOrder;
     }
     async updateOrderDelivery(input) {
         const { orderId, status, tracking } = input;
@@ -60,6 +72,21 @@ let OrderService = class OrderService {
         if (!order) {
             throw new common_1.NotFoundException('Order not found');
         }
+        const customerEmail = 'imranahmad9847@gmail.com';
+        await this.emailService.sendEmail({
+            to: customerEmail,
+            subject: `Order Update: ${order.status}`,
+            text: `Your order (${order.orderId}) status has been updated to "${order.status}".`,
+            html: `
+        <h2>Your order status has been updated</h2>
+        <p><strong>Order ID:</strong> ${order.orderId}</p>
+        <p><strong>New Status:</strong> ${order.status}</p>
+        ${order.tracking
+                ? `<p><strong>Tracking Info:</strong> ${order.tracking}</p>`
+                : ''}
+        <p>Thank you for shopping with us!</p>
+      `,
+        });
         return order;
     }
     async cancelOrder(orderId, userId) {
@@ -76,6 +103,19 @@ let OrderService = class OrderService {
         order.status = 'cancelled';
         await order.save();
         await this.inventoryService.restoreStock(order.items);
+        const customerEmail = 'imranahmad9847@gmail.com';
+        const totalAmount = order.totalAmount || 'N/A';
+        await this.emailService.sendEmail({
+            to: customerEmail,
+            subject: 'Order Cancellation',
+            text: `Your order (${order.orderId}) has been cancelled.`,
+            html: `
+        <h2>Your order has been cancelled</h2>
+        <p><strong>Order ID:</strong> ${order.orderId}</p>
+        <p><strong>Total:</strong> ₹${totalAmount}</p>
+        <p>We're sorry to see you cancel. If you have any questions, feel free to contact support.</p>
+      `,
+        });
         return order;
     }
 };

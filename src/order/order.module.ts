@@ -13,6 +13,8 @@ import { EmailModule } from 'src/email/email.module';
     InventoryModule,
     EmailModule,
   ],
+  
   providers: [OrderResolver, OrderService],
+  exports: [MongooseModule], // 👈 VERY IMPORTANT
 })
 export class OrderModule {}

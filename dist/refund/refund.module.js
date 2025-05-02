@@ -12,12 +12,18 @@ const mongoose_1 = require("@nestjs/mongoose");
 const refund_model_1 = require("./refund.model");
 const refund_resolver_1 = require("./refund.resolver");
 const refund_service_1 = require("./refund.service");
+const order_module_1 = require("../order/order.module");
+const email_module_1 = require("../email/email.module");
 let RefundModule = class RefundModule {
 };
 exports.RefundModule = RefundModule;
 exports.RefundModule = RefundModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: refund_model_1.Refund.name, schema: refund_model_1.RefundSchema }])],
+        imports: [
+            mongoose_1.MongooseModule.forFeature([{ name: refund_model_1.Refund.name, schema: refund_model_1.RefundSchema }]),
+            order_module_1.OrderModule,
+            email_module_1.EmailModule,
+        ],
         providers: [refund_resolver_1.RefundResolver, refund_service_1.RefundService],
     })
 ], RefundModule);
