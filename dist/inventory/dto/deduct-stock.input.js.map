@@ -1,0 +1,1 @@
+{"version":3,"file":"deduct-stock.input.js","sourceRoot":"","sources":["../../../src/inventory/dto/deduct-stock.input.ts"],"names":[],"mappings":";;;;;;;;;;;;AAEA,6CAAmD;AAG5C,IAAM,gBAAgB,GAAtB,MAAM,gBAAgB;IAE3B,SAAS,CAAS;IAGlB,QAAQ,CAAS;CAClB,CAAA;AANY,4CAAgB;AAE3B;IADC,IAAA,eAAK,GAAE;;mDACU;AAGlB;IADC,IAAA,eAAK,GAAE;;kDACS;2BALN,gBAAgB;IAD5B,IAAA,mBAAS,GAAE;GACC,gBAAgB,CAM5B"}
