@@ -96,3 +96,138 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+
+
+Order 
+
+Create Order
+
+mutation {
+  createOrder(
+    input: {
+      orderId: "ORD1239234000"
+      totalAmount: 999
+      coupanId: ["COUPON2025"]
+      cartId: "CART7890"
+    status:"pending"
+      paymentId: "PAY123456"
+      userId: "USER001"
+      address: "123, Test Street, Test City"
+      cartItems: [
+        {
+          productId: "6806102caa53ecf63e52b63c"
+          quantity: 2
+        }
+        
+      ]
+    }
+  ) {
+    _id
+    orderId
+    totalAmount
+    address
+  status
+    createdAt
+    tracking
+    coupanIds
+  }
+}
+
+
+Update Order Delivery
+
+mutation {
+  updateOrderDelivery(
+    input: {
+      orderId: "ORD12392345"
+      status: "processing"
+      tracking: "TRACK789654123"
+    }
+  ) {
+    _id
+    orderId
+    status
+    tracking
+    updatedAt
+  }
+}
+
+
+Deduct Stock
+
+mutation {
+  deductStock(
+    items: [
+      {
+        productId: "6805e6d9aa53ecf63e52b632"
+        quantity: 4
+      },
+      
+    ]
+  )
+}
+
+
+Cancel Order
+
+mutation {
+  cancelOrder(orderId: "ORD12392345", userId: "USER001") {
+    _id
+    status
+    status
+    items {
+      productId
+      quantity
+    }
+  }
+}
+
+
+Request Refund 
+
+mutation {
+  requestRefund(
+    input: {
+      orderId: "ORD1239234000",
+      userId: "USER001",
+      reason: "Wrong product received"
+    }
+  ) {
+    _id
+    orderId
+    status
+    reason
+    requestedAt
+  }
+}
+
+
+Refunds By User
+
+query {
+  refundsByUser(userId: "USER001") {
+    _id
+    orderId
+    reason
+    status
+    requestedAt
+  }
+}
+
+
+Update Refund Status
+
+mutation {
+  updateRefundStatus(input: {
+    orderId: "ORD1239234000"
+    status: "processing"
+  }) {
+    _id
+    orderId
+    status
+    reason
+    requestedAt
+  }
+}
+
